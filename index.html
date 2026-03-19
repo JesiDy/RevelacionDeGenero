@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revelación de Género</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100dvh;
+    background: linear-gradient(135deg, #e6d6ff, #d4f4dd);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ✨ ESTRELLAS (FIX MOBILE) */
+body::before, body::after {
+    content: "";
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    background-image: radial-gradient(white 2px, transparent 2px);
+    background-size: 50px 50px;
+    animation: starsMove 60s linear infinite;
+    opacity: 0.4;
+    z-index: 0;
+    pointer-events: none; /* 🔥 esto arregla los clicks en celular */
+}
+body::after {
+    background-image: radial-gradient(#b8f2c9 2px, transparent 2px);
+    animation-duration: 90s;
+}
+@keyframes starsMove {
+    to { transform: translateY(-50%); }
+}
+
+/* TARJETA */
+.card {
+    position: relative;
+    z-index: 2;
+    background: rgba(255,255,255,0.95);
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    width: 360px;
+}
+
+/* 🔥 FIX RESPONSIVE REAL */
+@media (max-width:420px){
+    body{
+        align-items: flex-start;
+        padding: 20px 0;
+    }
+
+    .card{
+        width: 92%;
+        margin-top: 20px;
+    }
+}
+
+/* ELEFANTE */
+.bears img {
+    width:120px;
+    animation: float 3s infinite;
+}
+@keyframes float { 50%{ transform:translateY(-8px);} }
+
+/* TEXTOS */
+.title-wow {
+    font-family:'Dancing Script';
+    font-size:34px;
+    color:#7b5ea7;
+}
+.text{ color:#4f6f52; }
+.names{ font-family:'Dancing Script'; }
+
+/* CONTADOR */
+.countdown {
+    background: linear-gradient(135deg,#d4f4dd,#e6d6ff);
+    padding:10px;
+    border-radius:10px;
+    margin:10px 0;
+}
+
+/* BOTONES */
+.btn {
+    display:block;
+    margin:8px 0;
+    padding:10px;
+    border-radius:20px;
+    text-decoration:none;
+}
+.whatsapp{ background:#6dbf73;color:white; }
+.location{ background:#cdb4ff;color:#333; }
+
+/* 🎁 */
+.gift-box {
+    background: linear-gradient(135deg,#e6d6ff,#d4f4dd);
+    padding:15px;
+    border-radius:15px;
+    margin:15px 0;
+    text-align:left;
+}
+
+/* LISTA */
+.wishlist {
+    background:#fff;
+    border-radius:15px;
+    padding:15px;
+}
+.wishlist input:checked + span {
+    text-decoration: line-through;
+    opacity:0.5;
+}
+
+/* TOAST */
+.toast {
+    position:fixed;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#cdb4ff;
+    color:white;
+    padding:10px 20px;
+    border-radius:20px;
+    opacity:0;
+    transition:0.5s;
+    z-index:10;
+}
+.toast.show{ opacity:1; }
+
+/* FLOTANTES */
+.float{
+    position:fixed;
+    bottom:-10%;
+    animation:subir 15s linear infinite;
+    pointer-events:none;
+}
+@keyframes subir{
+    to{ transform:translateY(-120vh); }
+}
+
+/* MUSICA (FIX MOBILE) */
+#musicBtn{
+    position:fixed;
+    top:15px;
+    right:15px;
+    background:#cdb4ff;
+    border:none;
+    border-radius:50%;
+    width:45px;
+    height:45px;
+    color:white;
+    z-index:999; /* 🔥 ahora sí se ve en celular */
+}
+
+/* REVELAR */
+.reveal-btn{
+    background:#7b5ea7;
+    color:white;
+    padding:12px;
+    border-radius:20px;
+    margin-top:15px;
+    cursor:pointer;
+    position: relative;
+    z-index: 3; /* 🔥 ahora sí recibe el click */
+}
+#revealText{
+    display:none;
+    margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+<source src="bensound-sunny.mp3" type="audio/mpeg">
+</audio>
+
+<button id="musicBtn">▶️</button>
+
+<div class="float" style="left:10%">🐘</div>
+<div class="float" style="left:40%">☁️</div>
+<div class="float" style="left:70%">🐘</div>
+
+<div class="card">
+
+<div class="bears">
+<img src="pngtree-cute-cartoon-baby-elephant-sitting-on-a-wooden-bench-clipart-illustration-png-image_16973921.png">
+</div>
+
+<h1 class="title-wow">Revelación de Género</h1>
+<p class="text">Acompañanos a descubrir este hermoso secreto ✨</p>
+<p class="names">Jesi & Kike 💑</p>
+
+<div class="countdown" id="countdown"></div>
+
+<a class="btn location" href="https://maps.app.goo.gl/cnxw1uagKVYxg9sH7?g_st=iw">Ver ubicación 📍</a>
+<a class="btn whatsapp" href="https://wa.me/543513242913?text=Hola! Confirmo asistencia">Confirmar asistencia 📲</a>
+
+<div class="gift-box">
+<h3>🎁 Juguemos antes de conocernos</h3>
+
+<p style="text-align:center; font-weight:600;">
+🤍 Vamos a jugar con vos antes de nacer...  
+¿Qué pensás que somos? 🤍
+</p>
+
+<ul>
+<li>
+💙 <strong>Si creés que somos dos nenes:</strong><br>
+Traé un paquete de pañales por cada uno 👶👶<br>
+<em>(Recomendación: RN / P / S)</em>
+</li>
+
+<br>
+
+<li>
+💖 <strong>Si pensás que somos dos nenas:</strong><br>
+Podés traer toallitas de higiene, shampoo o crema de enjuague 🧴✨<br>
+<em>(Dicen que las mujeres somos más coquetas… preferencia: toallitas 😉)</em>
+</li>
+
+<br>
+
+<li>
+💚 <strong>Si creés que somos uno y uno:</strong><br>
+Traé un paquete de pañales + un paquete de toallitas 🍼💫
+</li>
+</ul>
+
+<p style="text-align:center; margin-top:10px;">
+✨ ¡Gracias por ser parte de este momento tan especial! ✨
+</p>
+
+</div>
+
+<div class="wishlist">
+<h3>💜 Lista de deseos</h3>
+<p>
+Si querés acompañarnos con un regalito extra ✨ lo vamos a recibir con muchísimo amor.  
+Preparamos esta lista solo como una guía, pero lo más importante para nosotros es compartir este momento con vos 💜
+</p>
+
+<label><input type="checkbox"><span>Cochecito paragüitas 1</span></label>
+<label><input type="checkbox"><span>Cochecito paragüitas 2</span></label>
+<label><input type="checkbox"><span>Bañera</span></label>
+<label><input type="checkbox"><span>Body (3 a 6 meses)</span></label>
+<label><input type="checkbox"><span>Enteritos (3 a 6 meses)</span></label>
+<label><input type="checkbox"><span>Gorritos / manoplas / medias</span></label>
+<label><input type="checkbox"><span>Cambiador</span></label>
+<label><input type="checkbox"><span>Mochila maternal</span></label>
+<label><input type="checkbox"><span>Salida de baño</span></label>
+<label><input type="checkbox"><span>Mantita</span></label>
+<label><input type="checkbox"><span>Chupetes</span></label>
+<label><input type="checkbox"><span>Baberos</span></label>
+<label><input type="checkbox"><span>Móvil para cuna</span></label>
+<label><input type="checkbox"><span>Esterilizador de mamaderas</span></label>
+<label><input type="checkbox"><span>Kit de higiene</span></label>
+<label><input type="checkbox"><span>Organizador de pañales</span></label>
+<label><input type="checkbox"><span>Juguetes simples</span></label>
+<label><input type="checkbox"><span>Huevito para auto</span></label>
+
+</div>
+
+<div class="reveal-btn" onclick="revealGender()">🎉 Revelar Género</div>
+<div id="revealText">💜💚 ¡Son mellis! 💚💜</div>
+
+</div>
+
+<div class="toast" id="toast">💜 ¡Gracias por tu regalo!</div>
+
+<script>
+// CONTADOR COMPLETO
+const eventDate = new Date("May 10, 2026 17:00:00").getTime();
+const countdown = document.getElementById("countdown");
+
+setInterval(()=>{
+const now = new Date().getTime();
+const diff = eventDate-now;
+
+const d = Math.floor(diff/(1000*60*60*24));
+const h = Math.floor((diff/(1000*60*60))%24);
+const m = Math.floor((diff/(1000*60))%60);
+
+countdown.innerHTML = `⏳ ${d} días ${h} hs ${m} min`;
+},1000);
+
+// CHECK + TOAST + GUARDADO
+const checks = document.querySelectorAll("input[type=checkbox]");
+const toast = document.getElementById("toast");
+
+checks.forEach((chk,i)=>{
+const saved = localStorage.getItem("gift"+i);
+if(saved==="true") chk.checked=true;
+
+chk.addEventListener("change",()=>{
+localStorage.setItem("gift"+i, chk.checked);
+
+toast.classList.add("show");
+setTimeout(()=>toast.classList.remove("show"),2000);
+});
+});
+
+// MUSICA
+//const music=document.getElementById("music");
+//document.getElementById("musicBtn").onclick=()=>{
+//music.paused?music.play():music.pause();
+//};
+
+
+const music = document.getElementById("music");
+const btn = document.getElementById("musicBtn");
+
+// volumen suave (opcional)
+music.volume = 0.2;
+
+btn.addEventListener("click", function () {
+
+    if (music.paused) {
+        music.play()
+        .then(() => {
+            btn.innerHTML = "🔊";
+        })
+        .catch((e) => {
+            console.log("Error al reproducir:", e);
+        });
+    } else {
+        music.pause();
+        btn.innerHTML = "▶️";
+    }
+
+});
+
+// REVELAR
+function revealGender(){
+document.getElementById("revealText").style.display="block";
+}
+</script>
+
+</body>
+</html>
