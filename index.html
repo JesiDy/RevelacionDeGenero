@@ -176,6 +176,44 @@ body::after {
     display:none;
     margin-top:10px;
 }
+
+
+      body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  .cbu-box {
+    background: #f4f4f4;
+    padding: 15px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+
+  button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+
+  .mensaje {
+    margin-top: 10px;
+    color: green;
+    font-size: 14px;
+    display: none;
+  }
 </style>
 </head>
 
@@ -256,8 +294,11 @@ Preparamos esta lista solo como una guía o dejamos un cbu, pero lo más importa
 <div id="revealText">💜💚 ¡Son mellis! 💚💜</div>
 
 </div>
+<h2>Datos para transferencia 💳</h2>
 
-<div class="toast" id="toast">💜 ¡Gracias por tu regalo!</div>
+<div class="cbu-box" id="cbu">
+ 0000076500000044098681 
+</div>
 
 <script>
 // CONTADOR COMPLETO
@@ -324,6 +365,22 @@ btn.addEventListener("click", function () {
 // REVELAR
 function revealGender(){
 document.getElementById("revealText").style.display="block";
+}
+    //boton para copiar cbu
+
+<br>
+
+<button onclick="copiarCBU()">Copiar CBU</button>
+
+<div class="mensaje" id="mensaje">✔ CBU copiado</div>
+
+<script>
+function copiarCBU() {
+  const cbu = document.getElementById("cbu").innerText;
+
+  navigator.clipboard.writeText(cbu).then(() => {
+    document.getElementById("mensaje").style.display = "block";
+  });
 }
 </script>
 
